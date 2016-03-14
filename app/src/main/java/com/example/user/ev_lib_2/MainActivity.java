@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity
                 return new Adult();
             }
             else{
-                return new Kids();
+                return new Kid();
             }
         }
 
