@@ -32,8 +32,11 @@ public class Kid extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_kids, container, false);
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getContext());
-        mRecyclerView.setLayoutManager(mLayoutManager);
+       // mLayoutManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getBaseContext(),
+                LinearLayoutManager.HORIZONTAL, false));
+        //mRecyclerView.setLayoutManager(mLayoutManager);
+
 
         booksList = new ArrayList<>();
 
@@ -50,7 +53,7 @@ public class Kid extends Fragment {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, String responseString) {
-
+                Log.d("Success", responseString);
                 String jsonStr = responseString;
                 if (jsonStr != null) {
                     try {
@@ -67,9 +70,9 @@ public class Kid extends Fragment {
                                 bookData.setName(jsonObject.getString("book_name"));
                                 bookData.setDescription(jsonObject.getString("description"));
                                 bookData.setPrice(jsonObject.getInt("price"));
+                                bookData.setImage(jsonObject.getString("cover_picture"));
 
                                 booksList.add(bookData);
-                                Log.d("Success", responseString);
                                 mAdapter = new MyAdapter(booksList);
                                 mRecyclerView.setAdapter(mAdapter);
                             }

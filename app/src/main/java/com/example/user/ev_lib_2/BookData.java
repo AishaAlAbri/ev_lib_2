@@ -13,6 +13,7 @@ public class BookData {
     private String description ;
     private int price;
     private int category;
+    private String image;
 
 
     public BookData(String description, String name, int category, int price) {
@@ -66,6 +67,11 @@ public class BookData {
     }
 
 
+    public String getImage() {
+        return image;
+    }
 
-
+    public void setImage(String image) {
+        this.image = image;
+    }
 }
