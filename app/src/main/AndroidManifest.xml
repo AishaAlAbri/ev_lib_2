@@ -28,10 +28,10 @@
         <activity android:name=".BookDetails" />
         <activity android:name=".Mybooks" />
         <activity android:name=".ContactUS" />
-        <activity android:name=".AboutUs"></activity>
-        <activity android:name=".Login"></activity>
-        <activity android:name=".Registration"></activity>
-        <activity android:name=".forgot_passwared"></activity>
+        <activity android:name=".AboutUs" />
+        <activity android:name=".Login" />
+        <activity android:name=".forgetPasswared" />
+        <activity android:name=".regestrationActivity"></activity>
     </application>
 
 </manifest>
