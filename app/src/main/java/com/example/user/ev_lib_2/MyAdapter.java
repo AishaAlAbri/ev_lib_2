@@ -1,5 +1,6 @@
 package com.example.user.ev_lib_2;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,15 +10,19 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.zip.Inflater;
+
 /**
  * Created by Mk Computer on 09/03/2016.
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private String[] mDataset;
+    ArrayList<BookData> mDataset;
 
 
-
-    public MyAdapter(String[] myDataset) {
+    public MyAdapter(ArrayList<BookData> myDataset) {
         mDataset = myDataset;
     }
 
@@ -36,22 +41,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.mTextView.setText(mDataset[position]);
+
+       // holder.mTextView.setText(String.valueOf(mDataset.get(position)));
+        holder.bookName.setText((CharSequence) mDataset.get(position).getName());
        // viewHolder.currentItem = items.get(i);
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return mDataset.size();
+        //return 1;
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView mTextView;
+        public TextView bookName;
         public ViewHolder(View v) {
             super(v);
-            mTextView = (TextView)v.findViewById(R.id.info_text);
+            bookName = (TextView)v.findViewById(R.id.book_name);
             v.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     getAdapterPosition();

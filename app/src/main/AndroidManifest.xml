@@ -25,7 +25,11 @@
             android:name="io.fabric.ApiKey"
             android:value="318b4b4d7731fdcf0e18d734411ac0fcde21bcf6" />
 
-        <activity android:name=".BookDetails"></activity>
+        <activity android:name=".BookDetails" />
+        <activity android:name=".Login" />
+        <activity android:name=".Mybooks" />
+        <activity android:name=".ContactUS" />
+        <activity android:name=".AboutUs"></activity>
     </application>
 
 </manifest>

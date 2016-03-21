@@ -1,5 +1,6 @@
 package com.example.user.ev_lib_2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -93,13 +94,17 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.sign_in) {
-            // Handle the camera action
+           Intent i=new Intent(MainActivity.this,Login.class);
+            startActivity(i);
         } else if (id == R.id.my_books) {
-
+            Intent i=new Intent(MainActivity.this,Mybooks.class);
+            startActivity(i);
         } else if (id == R.id.contact_us) {
-
+            Intent i=new Intent(MainActivity.this,ContactUS.class);
+            startActivity(i);
         } else if (id == R.id.about_us) {
-
+            Intent i=new Intent(MainActivity.this,AboutUs.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
