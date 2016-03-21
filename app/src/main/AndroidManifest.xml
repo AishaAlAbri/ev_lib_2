@@ -26,12 +26,10 @@
             android:value="318b4b4d7731fdcf0e18d734411ac0fcde21bcf6" />
 
         <activity android:name=".BookDetails" />
+        <activity android:name=".Login" />
         <activity android:name=".Mybooks" />
         <activity android:name=".ContactUS" />
         <activity android:name=".AboutUs"></activity>
-        <activity android:name=".Login"></activity>
-        <activity android:name=".Registration"></activity>
-        <activity android:name=".forgot_passwared"></activity>
     </application>
 
 </manifest>

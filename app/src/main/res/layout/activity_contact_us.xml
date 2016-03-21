@@ -9,4 +9,25 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.user.ev_lib_2.ContactUS">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="About us"
+        android:id="@+id/textView4"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Engineering Village is a leading educational center in the Middle East based in the Sultanate of Oman. The Village has a great focus on developing electronics and programming skills through providing technical training and after school activities for all ages. The village also supplies all sorts of Electronic Components, Logic Gates, Programmable Chips, Programmers, Sensors, Motors, Solar Panels and a variety of Electronics Workshop Tools. The aim is to provide the tools, experience and the needed environment for creativity and innovation."
+        android:id="@+id/textView"
+        android:layout_marginTop="56dp"
+        android:textColor="#49020f"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
