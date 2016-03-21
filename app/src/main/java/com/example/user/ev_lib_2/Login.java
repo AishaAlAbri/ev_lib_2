@@ -18,7 +18,7 @@ EditText username , passwared ;
 
     }
     public  void forgotPasswared(View view){
-        Intent i = new Intent(Login.this ,forgot_passwared.class);
+        Intent i = new Intent(Login.this ,forgetPasswared.class);
         startActivity(i);
 
     }
