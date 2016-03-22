@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import java.util.zip.Inflater;
  */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     ArrayList<BookData> mDataset;
+    ImageLoader imageLoader;
 
 
     public MyAdapter(ArrayList<BookData> myDataset) {
@@ -32,6 +34,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                                                    int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.kids_card_view, parent, false);
+                imageLoader=new ImageLoader(parent.getContext());
+
 
         ViewHolder vh = new ViewHolder(v);
         return vh;
@@ -44,21 +48,28 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
        // holder.mTextView.setText(String.valueOf(mDataset.get(position)));
         holder.bookName.setText((CharSequence) mDataset.get(position).getName());
-       // viewHolder.currentItem = items.get(i);
+        int price=mDataset.get(position).getPrice();
+        holder.price_txv_list.setText(Integer.toString(price));
+
+        String image=mDataset.get(position).getImage();
+        ImageView view=holder.cardimage;
+        imageLoader.DisplayImage(image, view);
 
     }
 
     @Override
     public int getItemCount() {
         return mDataset.size();
-        //return 1;
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView bookName;
+        public TextView bookName,price_txv_list;
+        public ImageView cardimage;
         public ViewHolder(View v) {
             super(v);
             bookName = (TextView)v.findViewById(R.id.book_name);
+            price_txv_list = (TextView)v.findViewById(R.id.price_txv_list);
+            cardimage = (ImageView)v.findViewById(R.id.cardimage);
             v.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     getAdapterPosition();
