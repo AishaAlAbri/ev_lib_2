@@ -8,26 +8,151 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.user.ev_lib_2.ContactUS">
+    <View
+        android:id="@+id/view"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true" />
 
-    <TextView
+    <ScrollView
+        android:id="@+id/ScrollView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="About us"
-        android:id="@+id/textView4"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/view"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="#7e7e7e"
+        android:padding="25dp"
+        tools:ignore="RtlCompat"
+        android:layout_alignParentBottom="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Engineering Village is a leading educational center in the Middle East based in the Sultanate of Oman. The Village has a great focus on developing electronics and programming skills through providing technical training and after school activities for all ages. The village also supplies all sorts of Electronic Components, Logic Gates, Programmable Chips, Programmers, Sensors, Motors, Solar Panels and a variety of Electronics Workshop Tools. The aim is to provide the tools, experience and the needed environment for creativity and innovation."
-        android:id="@+id/textView"
-        android:layout_marginTop="56dp"
-        android:textColor="#49020f"
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/member_login_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="Contact Us"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:typeface="monospace" />
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:id="@+id/imageView3"
+        android:background="@drawable/pbox"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_alignLeft="@+id/ScrollView"
+        android:layout_alignStart="@+id/ScrollView" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageView6"
+        android:background="@drawable/whatsaap"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/imageView5"
+        android:layout_alignLeft="@+id/imageView5"
+        android:layout_alignStart="@+id/imageView5" />
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageView4"
+        android:background="@drawable/email"
         android:layout_below="@+id/textView4"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignRight="@+id/imageView3"
+        android:layout_alignEnd="@+id/imageView3" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageView5"
+        android:background="@drawable/facabook"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/imageView4"
+        android:layout_alignLeft="@+id/imageView4"
+        android:layout_alignStart="@+id/imageView4" />
+
+    <ImageView
+        android:id="@+id/view_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/c_Us" />
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:id="@+id/imageView2"
+        android:background="@drawable/tel"
+        android:layout_below="@+id/view_1"
+        android:layout_alignRight="@+id/imageView3"
+        android:layout_alignEnd="@+id/imageView3"
+        android:layout_marginTop="53dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Telephon:\n00968 22027662"
+        android:id="@+id/textView"
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_alignLeft="@+id/view_1"
+        android:layout_alignStart="@+id/view_1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="P.B:186\nP.C:123\nSQU/MUSCAT"
+        android:id="@+id/textView4"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Email:\ninfo@ev-center.com"
+        android:id="@+id/textView5"
+        android:layout_above="@+id/imageView5"
+        android:layout_alignLeft="@+id/view_1"
+        android:layout_alignStart="@+id/view_1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="FaceBook:\nEngineering Village"
+        android:id="@+id/textView6"
+        android:layout_above="@+id/imageView6"
+        android:layout_toRightOf="@+id/imageView4"
+        android:layout_toEndOf="@+id/imageView4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Whatsaap:\n00968  97377800 "
+        android:id="@+id/textView7"
+        android:layout_alignBottom="@+id/imageView6"
+        android:layout_toRightOf="@+id/imageView4"
+        android:layout_toEndOf="@+id/imageView4" />
 
 </RelativeLayout>

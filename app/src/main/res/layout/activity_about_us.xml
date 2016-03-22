@@ -7,6 +7,66 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/aboutUs_BG"
     tools:context="com.example.user.ev_lib_2.AboutUs">
+    <View
+        android:id="@+id/view"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true" />
+    <ScrollView
+        android:id="@+id/ScrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/registration_background"
+        android:padding="25dp"
+        tools:ignore="RtlCompat"
+        android:layout_below="@+id/view">
+
+    </ScrollView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Engineering Village is a leading educational\n center in the Middle East based in the\n Sultanatex of Oman. The Village has a great \nfocus on developing electronics and \nprogramming skills through providing technical training and after school activities for all ages.\n The village also supplies all sorts of Electronic Components, Logic Gates, Programmable \nChips, Programmers, Sensors, Motors, Solar\n Panels and a variety of Electronics Workshop Tools. The aim is to provide the tools,\n experience and the needed environment for creativity and innovation."
+        android:id="@+id/textView3"
+        android:textColor="#49020f"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/ScrollView"
+        android:layout_alignStart="@+id/ScrollView"/>
+
+    <ImageView
+        android:id="@+id/view_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/QM"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="About us"
+        android:id="@+id/textView2"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        android:layout_below="@+id/view_1"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:id="@+id/button2"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
