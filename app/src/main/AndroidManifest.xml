@@ -27,9 +27,9 @@
 
         <activity android:name=".BookDetails" />
         <activity android:name=".Mybooks" />
-        <activity android:name=".ContactUS" />
-        <activity android:name=".AboutUs"></activity>
-        <activity android:name=".Login"></activity>
+        <activity android:name=".ContactUS" android:parentActivityName=".MainActivity" ></activity>
+        <activity android:name=".AboutUs" android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".Login" android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".Registration"></activity>
         <activity android:name=".forgot_passwared"></activity>
     </application>
