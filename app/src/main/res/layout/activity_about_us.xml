@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/aboutUs_BG"
+    android:background="@drawable/aboutus_bg"
     tools:context="com.example.user.ev_lib_2.AboutUs">
     <View
         android:id="@+id/view"
@@ -44,7 +44,7 @@
         android:id="@+id/view_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/QM"
+        android:background="@drawable/qm"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
