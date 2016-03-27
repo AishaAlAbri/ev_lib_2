@@ -1,14 +1,13 @@
 package com.example.user.ev_lib_2;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,31 +17,32 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.crashlytics.android.Crashlytics;
-import io.fabric.sdk.android.Fabric;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.TextHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    private ViewPager mViewPager;
+
+    private RecyclerView allBooksRV;
+    private RecyclerView.Adapter mAdapter;
+    private ArrayList<BookData> allBooksList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -53,6 +53,66 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        allBooksRV = (RecyclerView) findViewById(R.id.allBooksRV);
+        allBooksRV.setHasFixedSize(true);
+        // mLayoutManager = new LinearLayoutManager(getContext());
+        allBooksRV.setLayoutManager(new LinearLayoutManager(this,
+                LinearLayoutManager.HORIZONTAL, false));
+        //mRecyclerView.setLayoutManager(mLayoutManager);
+
+
+        allBooksList = new ArrayList<>();
+
+
+        AsyncHttpClient client = new AsyncHttpClient();
+        RequestParams params = new RequestParams();
+        params.put("Query", "select * from books");
+        client.post("http://104.155.91.222:8080/getAllBooks", params, new TextHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+
+                Log.d("Error: ", responseString);
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                Log.d("Success", responseString);
+                String jsonStr = responseString;
+                if (jsonStr != null) {
+                    try {
+
+                        JSONArray jsonArray = new JSONArray(jsonStr);
+                        try {
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+
+                                jsonArray = new JSONArray(jsonStr);
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                BookData bookData = new BookData();
+                                bookData.setId(jsonObject.getInt("book_id"));
+                                bookData.setName(jsonObject.getString("book_name"));
+                                bookData.setDescription(jsonObject.getString("description"));
+                                bookData.setPrice(jsonObject.getInt("price"));
+                                bookData.setImage(jsonObject.getString("cover_picture"));
+
+                                allBooksList.add(bookData);
+                                mAdapter = new MyAdapter(allBooksList);
+                                allBooksRV.setAdapter(mAdapter);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+            }
+        });
     }
 
     @Override
@@ -93,59 +153,35 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.sign_in) {
-           Intent i=new Intent(MainActivity.this,Login.class);
+        if (id == R.id.nav_signin) {
+            Intent i=new Intent(MainActivity.this,Login.class);
             startActivity(i);
-        } else if (id == R.id.my_books) {
+            // Handle the camera action
+        } else if (id == R.id.nav_myBooks) {
+
             Intent i=new Intent(MainActivity.this,Mybooks.class);
             startActivity(i);
-        } else if (id == R.id.contact_us) {
-            Intent i=new Intent(MainActivity.this,ContactUS.class);
+
+        } else if (id == R.id.nav_Adults) {
+
+            Intent i=new Intent(MainActivity.this,Adult.class);
             startActivity(i);
-        } else if (id == R.id.about_us) {
+        } else if (id == R.id.nav_Kids) {
+
+            Intent i=new Intent(MainActivity.this,Kid.class);
+            startActivity(i);
+        } else if (id == R.id.nav_about_us) {
+
             Intent i=new Intent(MainActivity.this,AboutUs.class);
+            startActivity(i);
+        } else if (id == R.id.nav_contact_us) {
+
+            Intent i=new Intent(MainActivity.this,ContactUS.class);
             startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-
-            if(position==0){
-                return new Adults();
-            }
-            else{
-                return new Kid();
-            }
-        }
-
-
-
-
-        @Override
-        public int getCount() {
-            // Show 3 total pages.
-            return 2;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "Adult";
-                case 1:
-                    return "Kids";
-            }
-            return null;
-        }
     }
 }

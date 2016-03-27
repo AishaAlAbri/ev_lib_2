@@ -3,13 +3,25 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/sign_in"
+            android:id="@+id/nav_signin"
             android:icon="@drawable/ic_menu_share"
             android:title="Sign In" />
         <item
-            android:id="@+id/my_books"
+            android:id="@+id/nav_myBooks"
             android:icon="@drawable/ic_menu_gallery"
             android:title="My Books" />
+
+    </group>
+
+    <group android:title="Categories">
+        <item
+            android:id="@+id/nav_Adults"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Adults BooKs" />
+        <item
+            android:id="@+id/nav_Kids"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Kids BooKs" />
 
     </group>
 
@@ -17,11 +29,11 @@
         <menu>
 
             <item
-                android:id="@+id/contact_us"
+                android:id="@+id/nav_contact_us"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Contact Us" />
             <item
-                android:id="@+id/about_us"
+                android:id="@+id/nav_about_us"
                 android:icon="@drawable/ic_menu_share"
                 android:title="About Us" />
         </menu>

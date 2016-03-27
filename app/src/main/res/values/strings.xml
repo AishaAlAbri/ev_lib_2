@@ -20,4 +20,5 @@
         <item>fifth</item>
     </array>
     <string name="title_activity_register">register</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>
