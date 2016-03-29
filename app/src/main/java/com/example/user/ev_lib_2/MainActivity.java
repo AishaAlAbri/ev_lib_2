@@ -34,9 +34,9 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    private RecyclerView allBooksRV;
+    private RecyclerView allBooksRV,mostViewedRV;
     private RecyclerView.Adapter mAdapter;
-    private ArrayList<BookData> allBooksList;
+    private ArrayList<BookData> allBooksList,mostBooksList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,14 +56,14 @@ public class MainActivity extends AppCompatActivity
 
 
         allBooksRV = (RecyclerView) findViewById(R.id.allBooksRV);
+        mostViewedRV = (RecyclerView) findViewById(R.id.mostViewedRV);
         allBooksRV.setHasFixedSize(true);
-        // mLayoutManager = new LinearLayoutManager(getContext());
+
         allBooksRV.setLayoutManager(new LinearLayoutManager(this,
                 LinearLayoutManager.HORIZONTAL, false));
-        //mRecyclerView.setLayoutManager(mLayoutManager);
-
 
         allBooksList = new ArrayList<>();
+
 
 
         AsyncHttpClient client = new AsyncHttpClient();
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity
                                 bookData.setImage(jsonObject.getString("cover_picture"));
 
                                 allBooksList.add(bookData);
-                                mAdapter = new MyAdapter(allBooksList);
+                                mAdapter = new AllBooksAdapter(allBooksList);
                                 allBooksRV.setAdapter(mAdapter);
                             }
                         } catch (JSONException e) {
@@ -113,6 +113,61 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
+
+        mostViewedRV.setLayoutManager(new LinearLayoutManager(this,
+                LinearLayoutManager.HORIZONTAL, false));
+        mostBooksList = new ArrayList<>();
+
+        AsyncHttpClient clientMost = new AsyncHttpClient();
+        RequestParams paramsMost = new RequestParams();
+        params.put("Query", "select * from books");
+        clientMost.post("http://104.155.91.222:8080/getBooksByMostViewed", paramsMost, new TextHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+
+                Log.d("Error: ", responseString);
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                Log.d("Success", responseString);
+                String jsonStr = responseString;
+                if (jsonStr != null) {
+                    try {
+
+                        JSONArray jsonArray = new JSONArray(jsonStr);
+                        try {
+                            for (int i = 0; i < jsonArray.length(); i++) {
+
+
+                                jsonArray = new JSONArray(jsonStr);
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                BookData bookData = new BookData();
+                                bookData.setId(jsonObject.getInt("book_id"));
+                                bookData.setName(jsonObject.getString("book_name"));
+                                bookData.setDescription(jsonObject.getString("description"));
+                                bookData.setPrice(jsonObject.getInt("price"));
+                                bookData.setImage(jsonObject.getString("cover_picture"));
+
+                                mostBooksList.add(bookData);
+                                mAdapter = new AllBooksAdapter(mostBooksList);
+                                mostViewedRV.setAdapter(mAdapter);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+            }
+        });
+
+
+
     }
 
     @Override
