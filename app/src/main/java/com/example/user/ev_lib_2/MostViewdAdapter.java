@@ -1,6 +1,5 @@
 package com.example.user.ev_lib_2;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,32 +8,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.zip.Inflater;
 
 /**
- * Created by Mk Computer on 09/03/2016.
+ * Created by Mk Computer on 22/03/2016.
  */
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class MostViewdAdapter extends RecyclerView.Adapter<MostViewdAdapter.ViewHolder>{
     ArrayList<BookData> mDataset;
     ImageLoader imageLoader;
 
 
-    public MyAdapter(ArrayList<BookData> myDataset) {
+    public MostViewdAdapter(ArrayList<BookData> myDataset) {
         mDataset = myDataset;
     }
 
 
     @Override
-    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                   int viewType) {
+    public MostViewdAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                         int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.kids_card_view, parent, false);
-                imageLoader=new ImageLoader(parent.getContext());
+        imageLoader=new ImageLoader(parent.getContext());
 
 
         ViewHolder vh = new ViewHolder(v);
@@ -46,10 +41,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
-       // holder.mTextView.setText(String.valueOf(mDataset.get(position)));
+        // holder.mTextView.setText(String.valueOf(mDataset.get(position)));
         holder.bookName.setText((CharSequence) mDataset.get(position).getName());
         int price=mDataset.get(position).getPrice();
-        holder.price_txv_list.setText(Integer.toString(price));
+        holder.price_txv_list.setText("Price: "+Integer.toString(price));
 
         String image=mDataset.get(position).getImage();
         ImageView view=holder.cardimage;
@@ -83,4 +78,3 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
 }
-
